@@ -32,3 +32,6 @@ pip install -r requirements.txt
 python app.py
 ```
 
+## More detailed procedure
+
+https://zenn.dev/shomtsm/articles/52864a4b7b5eec

@@ -2,16 +2,16 @@ import json
 import requests
 from requests_oauthlib import OAuth1
 
-# APIキーとトークンの設定
+# Set up API keys and tokens
 API_KEY = 'YOUR_API_KEY'
 API_SECRET_KEY = 'YOUR_API_SECRET_KEY'
 ACCESS_TOKEN = 'YOUR_ACCESS_TOKEN'
 ACCESS_TOKEN_SECRET = 'YOUR_ACCESS_TOKEN_SECRET'
 
-# OAuth認証
+# OAuth Authentication
 auth = OAuth1(API_KEY, API_SECRET_KEY, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
-# アーカイブデータからツイートIDを抽出する関数
+# Function to extract tweet IDs from archived data
 def extract_tweet_ids_from_archive(archive_file_path):
     tweet_ids = []
     with open(archive_file_path, 'r', encoding='utf-8') as file:
@@ -24,7 +24,7 @@ def extract_tweet_ids_from_archive(archive_file_path):
             tweet_ids.append(tweet_id)
     return tweet_ids
 
-# ツイートを削除する関数
+# Function to delete a tweet
 def delete_tweets(tweet_ids):
     url_delete_tweet = "https://api.twitter.com/1.1/statuses/destroy/"
     for tweet_id in tweet_ids:
@@ -34,7 +34,7 @@ def delete_tweets(tweet_ids):
         else:
             print(f"Failed to delete tweet ID: {tweet_id}, Status Code: {del_response.status_code}")
 
-# 実行
-archive_file_path = 'tweets-sample.js'  # アーカイブファイルのパスを指定
+# execution
+archive_file_path = 'tweets-sample.js'  # Specify the path to the archive file
 tweet_ids = extract_tweet_ids_from_archive(archive_file_path)
 delete_tweets(tweet_ids)
